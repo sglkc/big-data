@@ -1,0 +1,15 @@
+{
+  "main": "preprocessor.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node preprocessor.mjs"
+  },
+  "dependencies": {
+    "classificator": "^0.3.4",
+    "sastrawijs": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/classificator": "^0.3.4",
+    "@types/node": "^22.10.5"
+  }
+}
