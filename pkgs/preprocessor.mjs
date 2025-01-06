@@ -60,18 +60,15 @@ async function processLines(file) {
  */
 export default async function processDatasets() {
   const results = []
-  const collections = fs.readdirSync(dir('../dataset'))
+  const collections = fs.readdirSync(dir('./dataset'))
 
   for await (const collection of collections) {
-    console.log('Processing collection', collection)
-    const datasets = fs.readdirSync(dir('../dataset', collection))
+    const datasets = fs.readdirSync(dir('./dataset', collection))
 
     for await (const dataset of datasets) {
-      const start = Date.now()
-      const result = await processLines(dir('../dataset', collection, dataset))
+      const result = await processLines(dir('./dataset', collection, dataset))
 
       result.forEach(r => results.push(r))
-      console.log('Completed', dataset, 'in', Date.now() - start, 'ms')
     }
   }
 
