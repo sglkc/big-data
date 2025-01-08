@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "classificator": "^0.3.4",
+    "graphemer": "^1.4.0",
     "lodash-es": "^4.17.21",
     "sastrawijs": "^1.1.0"
   },

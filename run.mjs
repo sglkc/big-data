@@ -5,7 +5,8 @@ import _ from 'lodash-es/collection.js'
 import { dir } from './pkgs/utils.mjs'
 import processDatasets from './pkgs/preprocessor.mjs'
 import metrics from './pkgs/metrics.mjs'
-import trainModel, { classifyRating } from './pkgs/trainer.mjs'
+import trainModel, { classifyRating, tokenizer } from './pkgs/trainer.mjs'
+import splitDataset from './pkgs/sampler.mjs'
 
 const OVERWRITE_MODEL = true
 const DATASET_PATH = dir('./dataset.json')
@@ -13,7 +14,7 @@ const MODEL_PATH = dir('./model.json')
 
 // KOMPILASI DATASET
 console.log('Mengompilasi dataset...')
-/** @type {import('./pkgs/preprocessor.mjs').Dataset[] | null} */
+/** @type {import('./pkgs/preprocessor.mjs').Dataset[]} */
 let datasets
 
 // kompilasi dataset jika tidak ada
@@ -26,14 +27,8 @@ if (!fs.existsSync(DATASET_PATH)) {
 }
 
 // ACAK DATASET DAN BAGI MENJADI TRAIN, VALIDATION, TESTING
-console.log('Mengacak dataset...')
-const shuffledDataset = _.shuffle(datasets)
-const trainSize = Math.floor(0.9 * shuffledDataset.length)
-const valSize = Math.floor(0.025 * shuffledDataset.length)
-const trainSet = shuffledDataset.slice(0, trainSize)
-const valSet = shuffledDataset.slice(trainSize, trainSize + valSize)
-const testSet = shuffledDataset.slice(trainSize + valSize)
-datasets = null
+console.log('Sampling dataset...')
+const { trainSet, valSet, testSet } = splitDataset(datasets, 0.9, 0.05)
 
 // TRAINING MODEL DARI SET TRAIN
 console.log('Training model...')
@@ -57,9 +52,13 @@ console.log('Validasi model...')
 const trueLabels = []
 const predLabels = []
 const likelihoods = {}
-
+let skipped=  0
 valSet.forEach(([ review, rating ]) => {
-  const category = classificator.categorize(review)
+  const sentence = review//tokenizer(review).join(' ')
+
+  if (sentence.length < 1) return skipped++
+
+  const category = classificator.categorize(sentence)
 
   trueLabels.push(classifyRating(rating))
   predLabels.push(category.predictedCategory)
@@ -75,4 +74,5 @@ console.log('Rata-rata setiap kelas:')
 Object.entries(likelihoods).forEach(([k, v]) => {
   console.log(k, v / valSet.length)
 })
+console.log('skipped', skipped)
 // console.log(likelihoods)

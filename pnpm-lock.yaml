@@ -11,6 +11,9 @@ importers:
       classificator:
         specifier: ^0.3.4
         version: 0.3.4
+      graphemer:
+        specifier: ^1.4.0
+        version: 1.4.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -118,6 +121,9 @@ packages:
   globals@9.18.0:
     resolution: {integrity: sha512-S0nG3CLEQiY/ILxqtztTWH/3iRRdyBLw6KMDxnKMchrtbj2OFmehVh0WUCfW3DUrIgx/qFrJPICrq4Z4sTR9UQ==}
     engines: {node: '>=0.10.0'}
+
+  graphemer@1.4.0:
+    resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
   has-ansi@2.0.0:
     resolution: {integrity: sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==}
@@ -283,6 +289,8 @@ snapshots:
   esutils@2.0.3: {}
 
   globals@9.18.0: {}
+
+  graphemer@1.4.0: {}
 
   has-ansi@2.0.0:
     dependencies:
