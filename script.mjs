@@ -28,6 +28,7 @@ const elms = {
 form.addEventListener('submit', (e) => {
   e.preventDefault()
   analysis(input.value)
+  $('main').classList.remove('empty')
 })
 
 function tokenization(review) {

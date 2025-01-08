@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis Sentimen Review - Big Data</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind-compat.min.css">
+    <style>
+    main.empty > div { display: none; }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime" defer></script>
     <script src="./script.mjs" type="module" defer></script>
     <script>
@@ -18,7 +21,7 @@
     </script>
   </head>
   <body class="grid bg-gray-100">
-    <main class="mx-2 my-4 p-2 grid gap-4 justify-center">
+    <main class="mx-2 my-4 p-2 grid gap-4 justify-center empty">
       <!-- <h1 class="text-center text-2xl font-bold mb-4">Analisis Sentimen</h1> -->
       <form class="bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row gap-2">
         <input class="p-2 b-2 rounded-lg grow min-w-96" placeholder="Masukkan teks..." required />
