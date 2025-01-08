@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Sentimen Review - Big Data</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind-compat.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime" defer></script>
+    <script src="./script.mjs" type="module" defer></script>
+    <script>
+    window.__unocss = {
+      shortcuts: {
+        chip: 'p-2 b-2 bg-gray-50/25 whitespace-pre',
+        add: 'bg-green-100 b-green-300',
+        del: 'bg-red-100 b-red-300',
+      }
+    }
+    </script>
+  </head>
+  <body class="grid bg-gray-100">
+    <main class="mx-2 my-4 p-2 grid gap-4 justify-center">
+      <!-- <h1 class="text-center text-2xl font-bold mb-4">Analisis Sentimen</h1> -->
+      <form class="bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row gap-2">
+        <input class="p-2 b-2 rounded-lg grow min-w-96" placeholder="Masukkan teks..." required />
+        <button class="p-2 md:p-4 rounded-lg bg-orange-300 fw-bold" type="submit">Proses</button>
+      </form>
+      <div id="tokenization" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Tokenization</h2>
+        <p>Mengubah kalimat menjadi token</p>
+        <section class="grid gap-2">
+          <span id="tokenization-before" class="m-auto chip del empty:hidden"></span>
+          <img class="m-auto w-8" src="https://api.iconify.design/mingcute:arrows-down-line.svg" />
+          <div id="tokenization-after" class="m-auto flex flex-wrap gap-4"></div>
+        </section>
+      </div>
+      <div id="normalization" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Normalization</h2>
+        <p>Mengubah semua token menjadi huruf kecil</p>
+        <section class="grid gap-2">
+          <div id="normalization-before" class="m-auto flex flex-wrap gap-4"></div>
+          <img class="m-auto w-8" src="https://api.iconify.design/mingcute:arrows-down-line.svg" />
+          <div id="normalization-after" class="m-auto flex flex-wrap gap-4"></div>
+        </section>
+      </div>
+      <div id="case-folding" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Case folding</h2>
+        <p>Mengubah semua token menjadi huruf kecil</p>
+        <section class="grid gap-2">
+          <div id="case-folding-before" class="m-auto flex flex-wrap gap-4"></div>
+          <img class="m-auto w-8" src="https://api.iconify.design/mingcute:arrows-down-line.svg" />
+          <div id="case-folding-after" class="m-auto flex flex-wrap gap-4"></div>
+        </section>
+      </div>
+      <div id="filtering" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Filtering</h2>
+        <p>Mengubah semua token menjadi huruf kecil</p>
+        <section class="grid gap-2">
+          <div id="filtering-before" class="m-auto flex flex-wrap gap-4"></div>
+          <img class="m-auto w-8" src="https://api.iconify.design/mingcute:arrows-down-line.svg" />
+          <div id="filtering-after" class="m-auto flex flex-wrap gap-4"></div>
+        </section>
+      </div>
+      <div id="stop-words" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Stop words removal</h2>
+        <p>Mengubah semua token menjadi huruf kecil</p>
+        <section class="grid gap-2">
+          <div id="stop-words-before" class="m-auto flex flex-wrap gap-4"></div>
+          <img class="m-auto w-8" src="https://api.iconify.design/mingcute:arrows-down-line.svg" />
+          <div id="stop-words-after" class="m-auto flex flex-wrap gap-4"></div>
+        </section>
+      </div>
+      <div id="stemming" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Stemming</h2>
+        <p>Mengubah kata yang berimbuhan menjadi kata dasar</p>
+        <section class="grid gap-2">
+          <div id="stemming-before" class="m-auto flex flex-wrap gap-4"></div>
+          <img class="m-auto w-8" src="https://api.iconify.design/mingcute:arrows-down-line.svg" />
+          <div id="stemming-after" class="m-auto flex flex-wrap gap-4"></div>
+        </section>
+      </div>
+      <div id="classification" class="bg-white p-6 rounded-lg shadow-md grid gap-4">
+        <h2 class="text-xl font-bold">Klasifikasi Naive Bayes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="b-2">Label</th>
+              <th class="b-2">Probabilitas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="b-2 text-center">Positif</td>
+              <td id="positif-prob" class="b-2"></td>
+            </tr>
+            <tr>
+              <td class="b-2 text-center">Netral</td>
+              <td id="netral-prob" class="b-2"></td>
+            </tr>
+            <tr>
+              <td class="b-2 text-center">Negatif</td>
+              <td id="negatif-prob" class="b-2"></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Review ini memiliki sentimen <span id="sentimen" class=""></span> </p>
+      </div>
+    </main>
+  </body>
+</html>
