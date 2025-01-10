@@ -6,7 +6,7 @@
  */
 
 function randomSample(/** @type {Datasets} */ dataset) {
-  const length = dataset.length
+  const length = Math.round(dataset.length / 3)
   const positif = dataset.filter(i => i[1] > 3)
   const netral = dataset.filter(i => i[1] === 3)
   const negatif = dataset.filter(i => i[1] < 3)

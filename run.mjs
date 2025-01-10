@@ -70,9 +70,9 @@ valSet.forEach(([ review, rating ]) => {
 const result = metrics(trueLabels, predLabels, ['Negatif', 'Netral', 'Positif'])
 
 console.log(result)
-console.log('Rata-rata setiap kelas:')
-Object.entries(likelihoods).forEach(([k, v]) => {
-  console.log(k, v / valSet.length)
-})
-console.log('skipped', skipped)
+// console.log('Rata-rata setiap kelas:')
+// Object.entries(likelihoods).forEach(([k, v]) => {
+//   console.log(k, v / valSet.length)
+// })
+// console.log('skipped', skipped)
 // console.log(likelihoods)
